@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Арбатова В.П.">
+  <title>Презентация по лабораторной работе №1</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reset.css">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Презентация по лабораторной работе №1</h1>
+  <p class="subtitle">Основы информационной безопасности</p>
+  <p class="author">Арбатова В.П.</p>
+  <p class="date">21 февраля 2025</p>
+</section>
+
+<section id="цель-работы" class="slide level1">
+<h1>Цель работы</h1>
+<p>Целью данной работы является приобретение практических навыков установки операционной системы на виртуальную машину,настройки минимально необходимых для дальнейшей работы сервисов</p>
+</section>
+<section id="теоретическое-введение" class="slide level1">
+<h1>Теоретическое введение</h1>
+<p>Лабораторная работа подразумевает установку на виртуальную машину VirtualBox(https://www.virtualbox.org/)операционной системы Linux (дистрибутив Rocky (https://rockylinux.org/)). Выполнение работы возможно как в дисплейном классе факультета физико-математических и естественных наук РУДН, так и дома. Описание выполнения работы приведено для дисплейного класса со следующими характеристиками:– Intel Core i3-550 3.2 GHz, 4 GB оперативной памяти, 20 GB свободного места на жёстком диске;– ОСLinuxGentoo(http://www.gentoo.ru/);– VirtualBox верс.6.1 или старше;– каталог с образами ОС для работающих в дисплейном классе: /afs/dk.sci.pfu.edu.ru/common/files/iso/.</p>
+</section>
+<section id="выполнение-лабораторной-работы" class="slide level1">
+<h1>Выполнение лабораторной работы</h1>
+<h2 id="создание-и-настройка-виртуальной-машины">Создание и настройка виртуальной машины</h2>
+</section>
+<section id="создаю-виртуальную-машину" class="slide level1">
+<h1>Создаю виртуальную машину</h1>
+<figure>
+<img data-src="image/1.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>создание виртуальной машины</figcaption>
+</figure>
+</section>
+<section id="согласно-соглашению-об-именовании-даю-имя-пользователя-и-компьютера-ввожу-пароль" class="slide level1">
+<h1>Согласно соглашению об именовании даю имя пользователя и компьютера, ввожу пароль</h1>
+<figure>
+<img data-src="image/2.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>имя пользователя</figcaption>
+</figure>
+</section>
+<section id="настраиваю-количество-оперативной-памяти-и-процессоров" class="slide level1">
+<h1>Настраиваю количество оперативной памяти и процессоров</h1>
+<figure>
+<img data-src="image/3.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Количество памяти и процессоров</figcaption>
+</figure>
+</section>
+<section id="выделяю-место-для-виртуального-жесткого-диска" class="slide level1">
+<h1>Выделяю место для виртуального жесткого диска</h1>
+<figure>
+<img data-src="image/4.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>виртуальный жесткий диск</figcaption>
+</figure>
+</section>
+<section id="выбираю-язык-установки" class="slide level1">
+<h1>Выбираю язык установки</h1>
+<figure>
+<img data-src="image/5.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Язык установки</figcaption>
+</figure>
+</section>
+<section id="задаю-пароль-root" class="slide level1">
+<h1>Задаю пароль root</h1>
+<figure>
+<img data-src="image/6.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Задание пароля</figcaption>
+</figure>
+</section>
+<section id="создаю-пользователя-удовлетворяющего-соглашению-об-именовании" class="slide level1">
+<h1>Создаю пользователя, удовлетворяющего соглашению об именовании</h1>
+<figure>
+<img data-src="image/7.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Создание пользователя</figcaption>
+</figure>
+</section>
+<section id="произвожу-выбор-программ" class="slide level1">
+<h1>Произвожу выбор программ</h1>
+<figure>
+<img data-src="image/8.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Выбор программ</figcaption>
+</figure>
+</section>
+<section id="выключаю-kdump" class="slide level1">
+<h1>Выключаю KDUMP</h1>
+<figure>
+<img data-src="image/9.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Выключаю KDUMP</figcaption>
+</figure>
+</section>
+<section id="меняю-имя-узла" class="slide level1">
+<h1>Меняю имя узла</h1>
+<figure>
+<img data-src="image/10.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Имя узла</figcaption>
+</figure>
+</section>
+<section id="запускаю-машину" class="slide level1">
+<h1>Запускаю машину</h1>
+<figure>
+<img data-src="image/11.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Запуск машины</figcaption>
+</figure>
+</section>
+<section id="проверяю-что-диск-отключен" class="slide level1">
+<h1>Проверяю что диск отключен</h1>
+<figure>
+<img data-src="image/12.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Носители</figcaption>
+</figure>
+</section>
+<section id="выполнение-домашнего-задания" class="slide level1">
+<h1>Выполнение домашнего задания</h1>
+</section>
+<section id="в-окне-терминала-анализирую-последовательность-загрузки-системы-выполнив-команду-dmesg" class="slide level1">
+<h1>В окне терминала анализирую последовательность загрузки системы, выполнив команду dmesg</h1>
+<figure>
+<img data-src="image/13.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Загрузка системы</figcaption>
+</figure>
+</section>
+<section id="версия-ядра-линукс-частота-процессора-модель-процессора" class="slide level1">
+<h1>Версия ядра линукс, частота процессора, модель процессора</h1>
+<figure>
+<img data-src="image/14.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Ядро, процесс</figcaption>
+</figure>
+</section>
+<section id="память" class="slide level1">
+<h1>Память</h1>
+<figure>
+<img data-src="image/15.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Память</figcaption>
+</figure>
+</section>
+<section id="тип-обнаруженного-гипервизора" class="slide level1">
+<h1>Тип обнаруженного гипервизора</h1>
+<figure>
+<img data-src="image/16.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>гипервизор</figcaption>
+</figure>
+</section>
+<section id="sudo-fdish--l-показывает-тип-файловой-системы-типа-linux-linux-lvm" class="slide level1">
+<h1>sudo fdish -l показывает тип файловой системы, типа Linux, Linux LVM</h1>
+<figure>
+<img data-src="image/17.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>тип файловой системы</figcaption>
+</figure>
+</section>
+<section id="последовательность-монтирования-файловых-систем" class="slide level1">
+<h1>Последовательность монтирования файловых систем</h1>
+<figure>
+<img data-src="image/18.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Последовательность монтирования</figcaption>
+</figure>
+</section>
+<section id="выводы" class="slide level1">
+<h1>Выводы</h1>
+<p>Мной была установлена и настроена виртуальная машина</p>
+<p>:::</p>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
