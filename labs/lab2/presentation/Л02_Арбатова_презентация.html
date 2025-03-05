@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Арбатова В. П.">
+  <title>Презентация по лабораторной работе №2</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reset.css">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Презентация по лабораторной работе №2</h1>
+  <p class="subtitle">Информационная безопасность</p>
+  <p class="author">Арбатова В. П.</p>
+  <p class="date">03 марта 2025</p>
+</section>
+
+<section id="цель-работы" class="slide level1">
+<h1>Цель работы</h1>
+<p>Получение практических навыков работы в консоли с атрибутами файлов, закрепление теоретических основ дискреционного разграничения доступа в современных системах с открытым кодом на базе ОС Linux</p>
+</section>
+<section id="задание" class="slide level1">
+<h1>Задание</h1>
+<ol type="1">
+<li>Работа с атрибутами файлов</li>
+<li>Заполнение таблицы “Установленные права и разрешённые действия” (см. табл. 2.1)</li>
+<li>Заполнение таблицы “Минимальные права для совершения операций” (см. табл. 2.2)</li>
+</ol>
+</section>
+<section id="выполнение-лабораторной-работы" class="slide level1">
+<h1>Выполнение лабораторной работы</h1>
+<h2 id="section"></h2>
+<p>Создаю учётную запись пользователя</p>
+<figure>
+<img data-src="image/1.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>создание учётной записи</figcaption>
+</figure>
+<h2 id="section-1"></h2>
+<p>Создаю пароль для пользователя guest</p>
+<figure>
+<img data-src="image/2.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>создание пароля</figcaption>
+</figure>
+<h2 id="section-2"></h2>
+<p>Вхожу в систему от имени нового пользователя</p>
+<figure>
+<img data-src="image/3.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>вход в систему</figcaption>
+</figure>
+<h2 id="section-3"></h2>
+<p>Определяю директорию, в которой нахожусь, затем пишу вторую команду, чтобы переместиться в домашнюю директорию и проверяю вывод функции. Он совпадает с первым</p>
+<figure>
+<img data-src="image/4.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>определение директории</figcaption>
+</figure>
+<h2 id="section-4"></h2>
+<p>Уточняю имя пользователя</p>
+<figure>
+<img data-src="image/5.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>имя пользователя</figcaption>
+</figure>
+<h2 id="section-5"></h2>
+<p>Смотрю имя пользователя и его группы командой id, сравниваю с результатом команды groups. Они совпадают. С данными, выводимыми в приглашении командной строки совпадают тоже</p>
+<figure>
+<img data-src="image/6.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>группы и имя</figcaption>
+</figure>
+<h2 id="section-6"></h2>
+<p>С помощью дополнения в виде команды grep guest к команде из задания фильтрую результаты поиска. Все результаты совпадают с предыдущими</p>
+<figure>
+<img data-src="image/7.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>просмотр файла</figcaption>
+</figure>
+<h2 id="section-7"></h2>
+<p>Определяю существующие в системе директории командой ls-l /home/. Удалось получить список поддиректорий директории /home?. На них установлены права rwx——</p>
+<figure>
+<img data-src="image/8.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>права</figcaption>
+</figure>
+<h2 id="section-8"></h2>
+<p>Проверяю, какие расширенные атрибуты установлены на поддиректориях, находящихся в директории /home, командой: lsattr /home. Расширенные атрибуты посмотреть не удалось, директории других пользователей тоже</p>
+<figure>
+<img data-src="image/9.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>расширенные атрибуты</figcaption>
+</figure>
+<h2 id="section-9"></h2>
+<p>Создаю директорию, определяю права</p>
+<figure>
+<img data-src="image/10.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>директория</figcaption>
+</figure>
+<h2 id="section-10"></h2>
+<p>Снимаю все атрибуты с этой директории, проверяю, получилось ли</p>
+<figure>
+<img data-src="image/11.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>снимаю права</figcaption>
+</figure>
+<h2 id="section-11"></h2>
+<p>Попытаюсь создать в директории dir1 файл file1 командой echo “test” &gt; /home/guest/dir1/file1 Это не получается из=за отсутствия у меня прав на редактирование директории. Файл просто не создался</p>
+<figure>
+<img data-src="image/12.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>проверка</figcaption>
+</figure>
+</section>
+<section id="выводы" class="slide level1">
+<h1>Выводы</h1>
+<p>Получила практические навыки работы в консоли с атрибутами файлов, закрепила теоретические основы дискреционного разграничения доступа в современных системах с открытым кодом на базе ОС Linux</p>
+</section>
+<section id="список-литературы" class="slide level1 unnumbered">
+<h1 class="unnumbered">Список литературы</h1>
+<div id="refs" role="doc-bibliography">
+
+</div>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
