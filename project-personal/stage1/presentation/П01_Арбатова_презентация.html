@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Арбатова В. П.">
+  <title>Презентация по первому этапу индивидуального проекта</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reset.css">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Презентация по первому этапу индивидуального проекта</h1>
+  <p class="subtitle">Информационная безопасность</p>
+  <p class="author">Арбатова В. П.</p>
+  <p class="date">05 марта 2025</p>
+</section>
+
+<section id="цель-работы" class="slide level1">
+<h1>Цель работы</h1>
+<p>Приобретение практических навыков по установке операционной системы Linux на виртуальную машину.</p>
+</section>
+<section id="задание" class="slide level1">
+<h1>Задание</h1>
+<p>Установить дистрибутив Kali Linux на виртуальную машину VirtualBox.</p>
+</section>
+<section id="теоретическое-введение" class="slide level1">
+<h1>Теоретическое введение</h1>
+<p>Kali Linux — это дистрибутив Linux на основе Debian с открытым исходным кодом, предназначенный для расширенного тестирования на проникновение, проверки уязвимостей, аудита безопасности систем и сетей.</p>
+<p>Сферы применения дистрибутива:</p>
+<p>Тестирование на проникновение. Kali Linux широко используется в области тестирования безопасности, чтобы оценить уязвимости в компьютерных системах, сетях и приложениях. ОС предоставляет множество инструментов для обнаружения уязвимостей.</p>
+<p>Цифровое расследование. Дистрибутив предоставляет инструменты для сбора и анализа цифровых данных, включая восстановление удаленных файлов, извлечение метаданных, анализ системных журналов и т.д.</p>
+<p>Обратная разработка. Kali Linux содержит инструменты, которые помогают разработчикам анализировать готовое программное обеспечение, чтобы понять его работу, выявить уязвимости или разработать альтернативные реализации.</p>
+<p>Безопасность беспроводных сетей. У ОС есть набор инструментов для проверки и обеспечения безопасности беспроводных сетей. Kali Linux поддерживает анализ беспроводных протоколов, перехват и дешифрование сетевого трафика, а также атаки на беспроводные сети.</p>
+<p>Защита информации. Kali Linux также может использоваться для обеспечения безопасности информации, включая мониторинг сетевой активности, обнаружение вторжений, защиту от DDoS-атак и настройку брандмауэров.</p>
+</section>
+<section id="выполнение-лабораторной-работы" class="slide level1">
+<h1>Выполнение лабораторной работы</h1>
+<h2 id="section"></h2>
+<p>Начиню создание. Называю машину, устанавливаю тип, подтип и версию</p>
+<figure>
+<img data-src="image/1.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Начало создания</figcaption>
+</figure>
+<h2 id="section-1"></h2>
+<p>Выделю 4096 Мб основной памяти и 3 процессора</p>
+<figure>
+<img data-src="image/2.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Память и процессоры</figcaption>
+</figure>
+<h2 id="section-2"></h2>
+<p>Создаю новый виртуальный диск на 40 Гб</p>
+<figure>
+<img data-src="image/3.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Виртуальный диск</figcaption>
+</figure>
+<h2 id="section-3"></h2>
+<p>В настройках захожу в носители, в контроллеры добавляю установленный с официального сайта образ диска</p>
+<figure>
+<img data-src="image/4.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Контроллер</figcaption>
+</figure>
+<h2 id="section-4"></h2>
+<p>Запускаю машину</p>
+<figure>
+<img data-src="image/5.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Запуск машины</figcaption>
+</figure>
+<h2 id="section-5"></h2>
+<p>Выбираю графическую установку</p>
+<figure>
+<img data-src="image/6.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Графическая установка</figcaption>
+</figure>
+<h2 id="section-6"></h2>
+<p>Выбираю русский язык</p>
+<figure>
+<img data-src="image/7.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Язык</figcaption>
+</figure>
+<h2 id="section-7"></h2>
+<p>Вбиваю имя этого компьютера, согласно соглашению об именовании</p>
+<figure>
+<img data-src="image/8.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Имя компьютера</figcaption>
+</figure>
+<h2 id="section-8"></h2>
+<p>Ввожу так же имя домена</p>
+<figure>
+<img data-src="image/9.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Имя домена</figcaption>
+</figure>
+<h2 id="section-9"></h2>
+<p>Ввожу имя пользователя</p>
+<figure>
+<img data-src="image/10.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Имя пользователя</figcaption>
+</figure>
+<h2 id="section-10"></h2>
+<p>Следующее имя учётной записи задается автоматически</p>
+<figure>
+<img data-src="image/11.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Имя учётной записи</figcaption>
+</figure>
+<h2 id="section-11"></h2>
+<p>Задаю пароль</p>
+<figure>
+<img data-src="image/12.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Пароль</figcaption>
+</figure>
+<h2 id="section-12"></h2>
+<p>Выбираю время</p>
+<figure>
+<img data-src="image/13.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Выбор времени</figcaption>
+</figure>
+<h2 id="section-13"></h2>
+<p>Выбираю использовать весь диск, чтобы всё прошло автоматически</p>
+<figure>
+<img data-src="image/14.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Разметка диска</figcaption>
+</figure>
+<h2 id="section-14"></h2>
+<p>Выбора нет, выбираю единственный предложенный</p>
+<figure>
+<img data-src="image/15.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Разметка диска</figcaption>
+</figure>
+<h2 id="section-15"></h2>
+<p>Читаю, что написано и выполняю инструкцию</p>
+<figure>
+<img data-src="image/16.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Разметка дисков</figcaption>
+</figure>
+<h2 id="section-16"></h2>
+<p>Заканчиваю разметку и записываю изменения на диск</p>
+<figure>
+<img data-src="image/17.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Разметка дисков</figcaption>
+</figure>
+<h2 id="section-17"></h2>
+<p>Выбираю да. Если выбрать нет, машина не запустится</p>
+<figure>
+<img data-src="image/18.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Разметка дисков</figcaption>
+</figure>
+<h2 id="section-18"></h2>
+<p>Ничего не меняю, всё правильно</p>
+<figure>
+<img data-src="image/19.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Выбор ПО</figcaption>
+</figure>
+<h2 id="section-19"></h2>
+<p>Выбираю автоматический вариант</p>
+<figure>
+<img data-src="image/20.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Системный загрузчик</figcaption>
+</figure>
+<h2 id="section-20"></h2>
+<p>Установка завершена. Нажимаю продолжить</p>
+<figure>
+<img data-src="image/21.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Завершение установки</figcaption>
+</figure>
+<h2 id="section-21"></h2>
+<p>Готова виртуальная машина</p>
+<figure>
+<img data-src="image/22.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Готово!</figcaption>
+</figure>
+</section>
+<section id="выводы" class="slide level1">
+<h1>Выводы</h1>
+<p>Приобрела практические навыки по установке операционной системы Linux на виртуальную машину. Установила дистрибутив Kali LInux на VirtualBox.</p>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

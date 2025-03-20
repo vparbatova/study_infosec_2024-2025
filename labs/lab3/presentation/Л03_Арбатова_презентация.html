@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Арбатова В. П.">
+  <title>Презентация по лабораторной работе №3</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reset.css">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Презентация по лабораторной работе №3</h1>
+  <p class="subtitle">Информационная безопасность</p>
+  <p class="author">Арбатова В. П.</p>
+  <p class="date">20 марта 2025</p>
+</section>
+
+<section id="цель-работы" class="slide level1">
+<h1>Цель работы</h1>
+<p>Получить практические навыки работы в консоли с атрибутами файлов для групп пользователей</p>
+</section>
+<section id="задание" class="slide level1">
+<h1>Задание</h1>
+<p>Создание пользователя guest2, добавление его в группу пользователей guest Заполнение таблицы 3.1 Заполнение таблицы 3.2 на основе таблицы 3.1. (Таблица лежи в файле на github)</p>
+</section>
+<section id="теоретическое-введение" class="slide level1">
+<h1>Теоретическое введение</h1>
+<p>Права доступа определяют, какие действия конкретный пользователь может или не может совершать с определенным файлами и каталогами. С помощью разрешений можно создать надежную среду — такую, в которой никто не может поменять содержимое ваших документов или повредить системные файлы. [1]</p>
+<p>Группы пользователей Linux кроме стандартных root и users, здесь есть еще пару десятков групп. Это группы, созданные программами, для управления доступом этих программ к общим ресурсам. Каждая группа разрешает чтение или запись определенного файла или каталога системы, тем самым регулируя полномочия пользователя, а следовательно, и процесса, запущенного от этого пользователя. Здесь можно считать, что пользователь - это одно и то же что процесс, потому что у процесса все полномочия пользователя, от которого он запущен. [2]</p>
+<p>daemon - от имени этой группы и пользователя daemon запускаютcя сервисы, которым необходима возможность записи файлов на диск. sys - группа открывает доступ к исходникам ядра и файлам - include сохраненным в системе sync - позволяет выполнять команду /bin/sync games - разрешает играм записывать свои файлы настроек и историю в определенную папку man - позволяет добавлять страницы в директорию /var/cache/man lp - позволяет использовать устройства параллельных портов mail - позволяет записывать данные в почтовые ящики /var/mail/ proxy - используется прокси серверами, нет доступа записи файлов на диск www-data - с этой группой запускается веб-сервер, она дает доступ на запись /var/www, где находятся файлы веб-документов list - позволяет просматривать сообщения в /var/mail nogroup - используется для процессов, которые не могут создавать файлов на жестком диске, а только читать, обычно применяется вместе с пользователем nobody. adm - позволяет читать логи из директории /var/log tty - все устройства /dev/vca разрешают доступ на чтение и запись пользователям из этой группы disk - открывает доступ к жестким дискам /dev/sd* /dev/hd*, можно сказать, что это аналог рут доступа. dialout - полный доступ к серийному порту cdrom - доступ к CD-ROM wheel - позволяет запускать утилиту sudo для повышения привилегий audio - управление аудиодрайвером src - полный доступ к исходникам в каталоге /usr/src/ shadow - разрешает чтение файла /etc/shadow utmp - разрешает запись в файлы /var/log/utmp /var/log/wtmp video - позволяет работать с видеодрайвером plugdev - позволяет монтировать внешние устройства USB, CD и т д staff - разрешает запись в папку /usr/local</p>
+</section>
+<section id="выполнение-лабораторной-работы" class="slide level1">
+<h1>Выполнение лабораторной работы</h1>
+<h2 id="section"></h2>
+<p>Так как пользователь guest был создан в лабораторной работе № 2, создаю только пользователя guest2, задаю для него пароль, добавляю этого пользователя в группу guest</p>
+<figure>
+<img data-src="image/1.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Создание пользователя</figcaption>
+</figure>
+<h2 id="section-1"></h2>
+<p>Захожу с помощью команды su в аккаунт guest</p>
+<figure>
+<img data-src="image/2.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Вход в аккаунт</figcaption>
+</figure>
+<h2 id="section-2"></h2>
+<p>Во второй консоли захожу в аккаунт guest2 и узнаю директорию, в которой нахожусь. Стоит отметить, что вход в терминал от имени пользователей был выполнен в домашней директории пользователя vparbatova, которую команда pwd вывела. Домашней директорией пользователей она не является. Текущая директория с приглашением командной строки совпадает.</p>
+<figure>
+<img data-src="image/3.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Домашняя директория</figcaption>
+</figure>
+<h2 id="section-3"></h2>
+<p>Аналогично узнаю для guest</p>
+<figure>
+<img data-src="image/4.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Аналогично</figcaption>
+</figure>
+<h2 id="section-4"></h2>
+<p>Проверяю имя пользователей с помощью команды whoami, с помощью команды id могу увидеть группы, к которым принадлежит пользователь и коды этих групп (gid), команда groups просто выведет список групп, в которые входит пользователь. id -Gn - выведет названия групп, которым принадлежит пользователь</p>
+<p>id -G - выведет только код групп, которым принадлежит пользователь.</p>
+<p>Проверка для пользователя guest</p>
+<figure>
+<img data-src="image/5.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Проверка</figcaption>
+</figure>
+<h2 id="section-5"></h2>
+<p>Проверка для пользователя guest2</p>
+<figure>
+<img data-src="image/6.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Проверка</figcaption>
+</figure>
+<h2 id="section-6"></h2>
+<p>Вывела интересующее меня содержимое файла etc/group, видно, что в группе guest два пользователя, а в группе guest2 один</p>
+<figure>
+<img data-src="image/7.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Содержимое файла</figcaption>
+</figure>
+<h2 id="section-7"></h2>
+<p>От имени пользователя guest2 регистрирую его в группе guest с помощью команды newgrp</p>
+<figure>
+<img data-src="image/8.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Регистрация в группе</figcaption>
+</figure>
+<h2 id="section-8"></h2>
+<p>Добавляю права на чтение, запись и исполнение группе пользвателей guest (guest, guest2) на директорию home/guest в которой находятся все файлы для последующей работы</p>
+<figure>
+<img data-src="image/9.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Добавление прав</figcaption>
+</figure>
+<h2 id="section-9"></h2>
+<p>От имени пользователя guest снимаю все атрибуты с директории dir1, созданной в предыдущей лабораторной работе. Проверяю, что права действительно сняты</p>
+<figure>
+<img data-src="image/10.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Снятие атрибутов</figcaption>
+</figure>
+</section>
+<section id="выводы" class="slide level1">
+<h1>Выводы</h1>
+<p>Я получила практические навыки работы в консоли с атрибутами файлов для групп пользователей</p>
+</section>
+<section id="список-литературы" class="slide level1 unnumbered">
+<h1 class="unnumbered">Список литературы</h1>
+<div id="refs" role="doc-bibliography">
+
+</div>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
