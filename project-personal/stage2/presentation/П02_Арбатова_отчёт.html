@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Арабтова В. П.">
+  <title>Презентация по второму этапу индивидуального проекта</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reset.css">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Презентация по второму этапу индивидуального проекта</h1>
+  <p class="subtitle">Информационная безопасность</p>
+  <p class="author">Арабтова В. П.</p>
+  <p class="date">22 марта 2025</p>
+</section>
+
+<section id="цель-работы" class="slide level1">
+<h1>Цель работы</h1>
+<p>Установить DVWA в гостевую систему к Kali Linux.</p>
+</section>
+<section id="задание" class="slide level1">
+<h1>Задание</h1>
+<p>Установите DVWA в гостевую систему к Kali Linux.</p>
+</section>
+<section id="теоретическое-введение" class="slide level1">
+<h1>Теоретическое введение</h1>
+<p>Некоторые из уязвимостей веб приложений, который содержит DVWA:</p>
+<p>Брутфорс: Брутфорс HTTP формы страницы входа - используется для тестирования инструментов по атаке на пароль методом грубой силы и показывает небезопасность слабых паролей.</p>
+<p>Исполнение (внедрение) команд: Выполнение команд уровня операционной системы.</p>
+<p>Межсайтовая подделка запроса (CSRF): Позволяет «атакующему» изменить пароль администратора приложений.</p>
+<p>Внедрение (инклуд) файлов: Позволяет «атакующему» присоединить удалённые/локальные файлы в веб приложение.</p>
+<p>SQL внедрение: Позволяет «атакующему» внедрить SQL выражения в HTTP из поля ввода, DVWA включает слепое и основанное на ошибке SQL внедрение.</p>
+<p>Небезопасная выгрузка файлов: Позволяет «атакующему» выгрузить вредоносные файлы на веб сервер.</p>
+<p>Межсайтовый скриптинг (XSS): «Атакующий» может внедрить свои скрипты в веб приложение/базу данных. DVWA включает отражённую и хранимую XSS.</p>
+<p>Пасхальные яйца: раскрытие полных путей, обход аутентификации и некоторые другие.</p>
+<p>DVWA имеет три уровня безопасности, они меняют уровень безопасности каждого веб приложения в DVWA:</p>
+<p>Невозможный — этот уровень должен быть безопасным от всех уязвимостей. Он используется для сравнения уязвимого исходного кода с безопасным исходным кодом.</p>
+<p>Высокий — это расширение среднего уровня сложности, со смесью более сложных или альтернативных плохих практик в попытке обезопасить код. Уязвимости не позволяют такой простор эксплуатации как на других уровнях.</p>
+<p>Средний — этот уровень безопасности предназначен главным образом для того, чтобы дать пользователю пример плохих практик безопасности, где разработчик попытался сделать приложение безопасным, но потерпел неудачу.</p>
+<p>Низкий — этот уровень безопасности совершенно уязвим и совсем не имеет защиты. Его предназначение быть примером среди уязвимых веб приложений, примером плохих практик программирования и служить платформой обучения базовым техникам эксплуатации.</p>
+</section>
+<section id="выполнение-лабораторной-работы" class="slide level1">
+<h1>Выполнение лабораторной работы</h1>
+<h2 id="section"></h2>
+<p>Настройка DVWA происходит на нашем локальном хосте, поэтому нужно перейти в директорию /var/www/html. Затем клонирую нужный репозиторий GitHub, указанный в задании к этоому этапу индивидуального проекта</p>
+<figure>
+<img data-src="image/1.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Клонирование репозитория</figcaption>
+</figure>
+<h2 id="section-1"></h2>
+<p>Проверяю, что всё правильно скопировалось и добавляю права на этот файл, чтобы у меня был полный доступ к нему</p>
+<figure>
+<img data-src="image/2.jpg" id="fig:002" style="width:70.0%" alt="" /><figcaption>Добавляю права</figcaption>
+</figure>
+<h2 id="section-2"></h2>
+<p>Перехожу в папку и смотрю, какие в ней файлы</p>
+<figure>
+<img data-src="image/3.jpg" id="fig:003" style="width:70.0%" alt="" /><figcaption>Перехожу в папку</figcaption>
+</figure>
+<h2 id="section-3"></h2>
+<p>Копирую файл и проверяю, как он скопировался. Делаю это для того, чтобы в случае, если что-то пойдет не так, у меня был запасной вариант</p>
+<figure>
+<img data-src="image/4.jpg" id="fig:004" style="width:70.0%" alt="" /><figcaption>Копирование файла</figcaption>
+</figure>
+<h2 id="section-4"></h2>
+<p>Открываю файл в текстовом редакторе</p>
+<figure>
+<img data-src="image/5.jpg" id="fig:005" style="width:70.0%" alt="" /><figcaption>Открываю файл в редакторе</figcaption>
+</figure>
+<h2 id="section-5"></h2>
+<p>Меняю информацию об имени пользователя и пароле</p>
+<figure>
+<img data-src="image/6.jpg" id="fig:006" style="width:70.0%" alt="" /><figcaption>Меняю имя пользователя и пароль</figcaption>
+</figure>
+<h2 id="section-6"></h2>
+<p>Запускаю mysql, он изначально установлен в Kali Linux, поэтому скачивать не надо и проверяю, запустился ли</p>
+<figure>
+<img data-src="image/7.jpg" id="fig:007" style="width:70.0%" alt="" /><figcaption>Запуск mysql</figcaption>
+</figure>
+<h2 id="section-7"></h2>
+<p>Авторизуюсь в базе данных от имени пользователя root. Появляется командная строка с приглашением “MariaDB”, далее создаем в ней нового пользователя, используя учетные данные из файла config.inc.php</p>
+<figure>
+<img data-src="image/8.jpg" id="fig:008" style="width:70.0%" alt="" /><figcaption>Авторизация</figcaption>
+</figure>
+<h2 id="section-8"></h2>
+<p>Выдаю пользователю все привилегии и выхожу</p>
+<figure>
+<img data-src="image/9.jpg" id="fig:009" style="width:70.0%" alt="" /><figcaption>Выдаю привилегии</figcaption>
+</figure>
+<h2 id="section-9"></h2>
+<p>Теперь надо настроить сервер apache2, для этого перехожу в соответствующую директорию</p>
+<figure>
+<img data-src="image/10.jpg" id="fig:010" style="width:70.0%" alt="" /><figcaption>Переход в директорию</figcaption>
+</figure>
+<h2 id="section-10"></h2>
+<p>Открываю файл в текстовом редакторе</p>
+<figure>
+<img data-src="image/11.jpg" id="fig:011" style="width:70.0%" alt="" /><figcaption>Открытие файла</figcaption>
+</figure>
+<h2 id="section-11"></h2>
+<p>Нахожу параметры allow_url_fopen и allow_url_include. Эти параметры должны быть on</p>
+<figure>
+<img data-src="image/12.jpg" id="fig:012" style="width:70.0%" alt="" /><figcaption>Редактирование файла</figcaption>
+</figure>
+<h2 id="section-12"></h2>
+<p>Запускаю apache2 и проверяю статус, чтобы убедиться, что он действительно запущен</p>
+<figure>
+<img data-src="image/13.jpg" id="fig:0013" style="width:70.0%" alt="" /><figcaption>Запуск</figcaption>
+</figure>
+<h2 id="section-13"></h2>
+<p>В браузере вбиваю 127.0.0.1/DVWA и попадаю на сайт, где нужно авторизироваться</p>
+<figure>
+<img data-src="image/14.jpg" id="fig:014" style="width:70.0%" alt="" /><figcaption>Переход на сайт</figcaption>
+</figure>
+<h2 id="section-14"></h2>
+<p>Прокручиваем страницу вниз и нажимаем на кнопку</p>
+<figure>
+<img data-src="image/15.jpg" id="fig:015" style="width:70.0%" alt="" /><figcaption>Кнопка</figcaption>
+</figure>
+<h2 id="section-15"></h2>
+<p>Вхожу с данными, предложенными по умолчанию</p>
+<figure>
+<img data-src="image/16.jpg" id="fig:016" style="width:70.0%" alt="" /><figcaption>Вход</figcaption>
+</figure>
+</section>
+<section id="выводы" class="slide level1">
+<h1>Выводы</h1>
+<p>Установила DVWA в гостевую систему к Kali Linux.</p>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
