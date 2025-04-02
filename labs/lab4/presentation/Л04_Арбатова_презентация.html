@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Арбатова В. П.">
+  <title>Презентация по лабораторной работе № 4</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reset.css">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Презентация по лабораторной работе № 4</h1>
+  <p class="subtitle">Информационная безопасность</p>
+  <p class="author">Арбатова В. П.</p>
+  <p class="date">2 апреля 2025</p>
+</section>
+
+<section id="цель-работы" class="slide level1">
+<h1>Цель работы</h1>
+<p>Получение практических навыков работы в консоли с расширенными атрибутами файлов</p>
+</section>
+<section id="теоретическое-введение" class="slide level1">
+<h1>Теоретическое введение</h1>
+<p>Права доступа определяют, какие действия конкретный пользователь может или не может совершать с определенным файлами и каталогами. С помощью разрешений можно создать надежную среду — такую, в которой никто не может поменять содержимое ваших документов или повредить системные файлы. [1]</p>
+<p>Расширенные атрибуты файлов Linux представляют собой пары имя:значение, которые постоянно связаны с файлами и каталогами, подобно тому как строки окружения связаны с процессом. Атрибут может быть определён или не определён. Если он определён, то его значение может быть или пустым, или не пустым. [2]</p>
+<p>Расширенные атрибуты дополняют обычные атрибуты, которые связаны со всеми inode в файловой системе (т. е., данные stat(2)). Часто они используются для предоставления дополнительных возможностей файловой системы, например, дополнительные возможности безопасности, такие как списки контроля доступа (ACL), могут быть реализованы через расширенные атрибуты. [3]</p>
+<p>Установить атрибуты:</p>
+<p>chattr filename Значения:</p>
+<p>chattr +a # только добавление. Удаление и переименование запрещено;</p>
+<p>chattr +A # не фиксировать данные об обращении к файлу</p>
+<p>chattr +c # сжатый файл</p>
+<p>chattr +d # неархивируемый файл</p>
+<p>chattr +i # неизменяемый файл</p>
+<p>chattr +S # синхронное обновление</p>
+<p>chattr +s # безопасное удаление, (после удаления место на диске переписывается нулями)</p>
+<p>chattr +u # неудаляемый файл</p>
+<p>chattr -R # рекурсия</p>
+<p>Просмотреть атрибуты:</p>
+<p>lsattr filename Опции:</p>
+<p>lsattr -R # рекурсия</p>
+<p>lsattr -a # вывести все файлы (включая скрытые)</p>
+<p>lsattr -d # не выводить содержимое директории</p>
+</section>
+<section id="выполнение-лабораторной-работы" class="slide level1">
+<h1>Выполнение лабораторной работы</h1>
+<h2 id="section"></h2>
+<p>С помощью команды su захожу от имени пользователя guest не выходя из основного. От имени пользователя guest, созданного в прошлых лабораторных работах, определяю расширенные атрибуты файлa</p>
+<figure>
+<img data-src="image/1.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Проверка расширенных атрибутов</figcaption>
+</figure>
+<h2 id="section-1"></h2>
+<p>Изменяю права доступа. Пробую установить на файл /home/guest/dir1/file1 расширенный атрибут a от имени пользователя guest, в ответ получаю отказ от выполнения операции</p>
+<figure>
+<img data-src="image/2.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Меняю права доступа</figcaption>
+</figure>
+<h2 id="section-2"></h2>
+<p>От имени суперпользователя устанавливаю расширенный атрибут а</p>
+<figure>
+<img data-src="image/3.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Установка расширенного атрибута</figcaption>
+</figure>
+<h2 id="section-3"></h2>
+<p>Проверяю, атрибут действительно установлен. Записываю данные в файл и проверяю, всё успешно</p>
+<figure>
+<img data-src="image/4.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Проверка</figcaption>
+</figure>
+<h2 id="section-4"></h2>
+<p>Пробую удалить, записать данные и переименовать файл. Везде отказано в доступе</p>
+<figure>
+<img data-src="image/5.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Отказ в доступе</figcaption>
+</figure>
+<h2 id="section-5"></h2>
+<p>Убираю все права</p>
+<figure>
+<img data-src="image/6.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>0 прав</figcaption>
+</figure>
+<h2 id="section-6"></h2>
+<p>От имени суперпользователя убираю расширенный атрибут а</p>
+<figure>
+<img data-src="image/7.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Убираю расширенный атрибут</figcaption>
+</figure>
+<h2 id="section-7"></h2>
+<p>Провожу операции, всё работает</p>
+<figure>
+<img data-src="image/8.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Проверка</figcaption>
+</figure>
+<h2 id="section-8"></h2>
+<p>От имени суперпользователя устанавливаю расширенный атрибут i</p>
+<figure>
+<img data-src="image/9.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Установка</figcaption>
+</figure>
+<h2 id="section-9"></h2>
+<p>Снова пробую проводить манипуляции. Ничего не получается</p>
+<figure>
+<img data-src="image/10.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Попытки</figcaption>
+</figure>
+</section>
+<section id="выводы" class="slide level1">
+<h1>Выводы</h1>
+<p>Я получила практические навыки работы в консоли с расширенными атрибутами файлов</p>
+</section>
+<section id="список-литературы" class="slide level1 unnumbered">
+<h1 class="unnumbered">Список литературы</h1>
+<div id="refs" role="doc-bibliography">
+
+</div>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
