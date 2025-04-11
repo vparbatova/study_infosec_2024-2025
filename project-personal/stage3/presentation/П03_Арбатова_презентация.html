@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Арбатова В. П.">
+  <title>Презентация по третьему этапу индивидуального проекта</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reset.css">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Презентация по третьему этапу индивидуального проекта</h1>
+  <p class="subtitle">Информационная безопасность</p>
+  <p class="author">Арбатова В. П.</p>
+  <p class="date">10 апреля 2025</p>
+</section>
+
+<section id="цель-работы" class="slide level1">
+<h1>Цель работы</h1>
+<p>Приобретение практических навыков по использованию инструмента Hydra для брутфорса паролей.</p>
+</section>
+<section id="задание" class="slide level1">
+<h1>Задание</h1>
+<p>Реализовать эксплуатацию уязвимости с помощью брутфорса паролей.</p>
+</section>
+<section id="теоретическое-введение" class="slide level1">
+<h1>Теоретическое введение</h1>
+<p>Hydra используется для подбора или взлома имени пользователя и пароля. Поддерживает подбор для большого набора приложений <span class="citation" data-cites="brute">[@brute, @force, @parasram]</span>. Пример работы:</p>
+<p>Исходные данные:</p>
+<p>IP сервера 178.72.90.181;</p>
+<p>Сервис http на стандартном 80 порту;</p>
+<p>Для авторизации используется html форма, которая отправляет по адресу http://178.72.90.181/cgi-bin/luci методом POST запрос вида username=root&amp;password=test_password;</p>
+<p>В случае неудачной аутентификации пользователь наблюдает сообщение Invalid username and/or password! Please try again.</p>
+<p>Запрос к Hydra будет выглядеть примерно так:</p>
+<p>hydra -l root -P ~/pass_lists/dedik_passes.txt -o ./hydra_result.log -f -V -s 80 178.72.90.181 http-post-form “/cgi-bin/luci:username=<sup>USER</sup>&amp;password=<sup>PASS</sup>:Invalid username”</p>
+<p>Используется http-post-form потому, что авторизация происходит по http методом post.</p>
+<p>После указания этого модуля идёт строка /cgi-bin/luci:username=<sup>USER</sup>&amp;password=<sup>PASS</sup>:Invalid username, у которой через двоеточие (:) указывается:</p>
+<p>путь до скрипта, который обрабатывает процесс аутентификации (/cgi-bin/luci);</p>
+<p>строка, которая передаётся методом POST, в которой логин и пароль заменены на <sup>USER</sup> и <sup>PASS</sup> соответственно (username=<sup>USER</sup>&amp;password=<sup>PASS</sup>);</p>
+<p>строка, которая присутствует на странице при неудачной аутентификации; при её отсутствии Hydra поймёт, что мы успешно вошли (Invalid username).</p>
+</section>
+<section id="выполнение-лабораторной-работы" class="slide level1">
+<h1>Выполнение лабораторной работы</h1>
+<h2 id="section"></h2>
+<p>Чтобы пробрутфорсить пароль, нужно сначала найти большой список частоиспользуемых паролей. Его можно найти в открытых источниках, я взяла стандартный список паролей rockyou.txt для kali linux</p>
+<figure>
+<img data-src="image/1.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Скачивание файла</figcaption>
+</figure>
+<h2 id="section-1"></h2>
+<p>Перемещаю файл и проверяю, получилось ли</p>
+<figure>
+<img data-src="image/2.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Перемещение файла</figcaption>
+</figure>
+<h2 id="section-2"></h2>
+<p>Скачиваю cookie-Editor, чтобы получить информацию о параметрах cookie</p>
+<figure>
+<img data-src="image/3.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Скачиваю расширение для браузера</figcaption>
+</figure>
+<h2 id="section-3"></h2>
+<p>Ввожу в Hydra запрос нужную информацию. Пароль будем подбирать для пользователя admin, используем GET-запрос с двумя параметрами cookie: безопасность и PHPSESSID, найденными в прошлом пункте</p>
+<figure>
+<img data-src="image/4.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Получаю пароль и логин</figcaption>
+</figure>
+<h2 id="section-4"></h2>
+<p>Вхожу - вход выполнен успешно</p>
+<figure>
+<img data-src="image/5.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Вход</figcaption>
+</figure>
+</section>
+<section id="выводы" class="slide level1">
+<h1>Выводы</h1>
+<p>Приобрела практические навыки по использованию инструмента Hydra для брутфорса паролей</p>
+</section>
+<section id="список-литературы" class="slide level1 unnumbered">
+<h1 class="unnumbered">Список литературы</h1>
+<div id="refs" role="doc-bibliography">
+
+</div>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
