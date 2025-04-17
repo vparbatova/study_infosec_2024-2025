@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Арбатова В. П.">
+  <title>Презентация по лабораторной работе № 5</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reset.css">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Презентация по лабораторной работе № 5</h1>
+  <p class="subtitle">Информационная безопасность</p>
+  <p class="author">Арбатова В. П.</p>
+  <p class="date">17 апреля 2025</p>
+</section>
+
+<section id="цель-работы" class="slide level1">
+<h1>Цель работы</h1>
+<p>Изучение механизмов изменения идентификаторов, применения SetUID- и Sticky-битов. Получение практических навыков работы в кон- соли с дополнительными атрибутами. Рассмотрение работы механизма смены идентификатора процессов пользователей, а также влияние бита Sticky на запись и удаление файлов.</p>
+</section>
+<section id="теоретическое-введение" class="slide level1">
+<h1>Теоретическое введение</h1>
+<p>Дополнительные атрибуты файлов Linux В Linux существует три основных вида прав — право на чтение (read), запись (write) и выполнение (execute), а также три категории пользователей, к которым они могут применяться — владелец файла (user), группа владельца (group) и все остальные (others). Но, кроме прав чтения, выполнения и записи, есть еще три дополнительных атрибута. <span class="citation" data-cites="u">[@u]</span></p>
+<p>Sticky bit</p>
+<p>Используется в основном для каталогов, чтобы защитить в них файлы. В такой каталог может писать любой пользователь. Но, из такой директории пользователь может удалить только те файлы, владельцем которых он является. Примером может служить директория /tmp, в которой запись открыта для всех пользователей, но нежелательно удаление чужих файлов.</p>
+<p>SUID (Set User ID)</p>
+<p>Атрибут исполняемого файла, позволяющий запустить его с правами владельца. В Linux приложение запускается с правами пользователя, запустившего указанное приложение. Это обеспечивает дополнительную безопасность т.к. процесс с правами пользователя не сможет получить доступ к важным системным файлам, которые принадлежат пользователю root.</p>
+<p>SGID (Set Group ID)</p>
+<p>Аналогичен suid, но относиться к группе. Если установить sgid для каталога, то все файлы созданные в нем, при запуске будут принимать идентификатор группы каталога, а не группы владельца, который создал файл в этом каталоге.</p>
+<p>Обозначение атрибутов sticky, suid, sgid</p>
+<p>Специальные права используются довольно редко, поэтому при выводе программы ls -l символ, обозначающий указанные атрибуты, закрывает символ стандартных прав доступа.</p>
+<p>Пример: rwsrwsrwt</p>
+<p>где первая s — это suid, вторая s — это sgid, а последняя t — это sticky bit</p>
+<p>В приведенном примере не понятно, rwt — это rw- или rwx? Определить это просто. Если t маленькое, значит x установлен. Если T большое, значит x не установлен. То же самое правило распространяется и на s.</p>
+<p>В числовом эквиваленте данные атрибуты определяются первым символом при четырехзначном обозначении (который часто опускается при назначении прав), например в правах 1777 — символ 1 обозначает sticky bit. Остальные атрибуты имеют следующие числовое соответствие:</p>
+<p>1 — установлен sticky bit 2 — установлен sgid 4 — установлен suid Компилятор GCC GСС - это свободно доступный оптимизирующий компилятор для языков C, C++. Собственно программа gcc это некоторая надстройка над группой компиляторов, которая способна анализировать имена файлов, передаваемые ей в качестве аргументов, и определять, какие действия необходимо выполнить. Файлы с расширением .cc или .C рассматриваются, как файлы на языке C++, файлы с расширением .c как программы на языке C, а файлы c расширением .o считаются объектными <span class="citation" data-cites="gcc">[@gcc]</span>.</p>
+</section>
+<section id="выполнение-лабораторной-работы" class="slide level1">
+<h1>Выполнение лабораторной работы</h1>
+<h2 id="section"></h2>
+<p>Для лабораторной работы необходимо проверить, установлен ли компилятор gcc, комнда gcc -v позволяет это сделать. Также осуществляется отключение системы запретом с помощью setenforce 0</p>
+<figure>
+<img data-src="image/1.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Проверка</figcaption>
+</figure>
+<h2 id="section-1"></h2>
+<p>Создаю файл и открываю его в редакторе nano</p>
+<figure>
+<img data-src="image/2.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Создание файла</figcaption>
+</figure>
+<h2 id="section-2"></h2>
+<p>Текст файла</p>
+<figure>
+<img data-src="image/3.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Текст файла</figcaption>
+</figure>
+<h2 id="section-3"></h2>
+<p>Компилирую файл, проверяю, запускаю, узнаю id</p>
+<figure>
+<img data-src="image/4.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Работа с файлом</figcaption>
+</figure>
+<h2 id="section-4"></h2>
+<p>Текст второго файла</p>
+<figure>
+<img data-src="image/5.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Текст файла</figcaption>
+</figure>
+<h2 id="section-5"></h2>
+<p>Повторяю операции со вторым файлом</p>
+<figure>
+<img data-src="image/6.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Работа с файлом</figcaption>
+</figure>
+<h2 id="section-6"></h2>
+<p>С помощью chown изменяю владельца файла на суперпользователя, с помощью chmod изменяю права доступа</p>
+<figure>
+<img data-src="image/7.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Изменение прав доступа</figcaption>
+</figure>
+<h2 id="section-7"></h2>
+<p>Сравниваю выводы, моя команда вывела меньше информации</p>
+<figure>
+<img data-src="image/8.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Сравнение выводов</figcaption>
+</figure>
+<h2 id="section-8"></h2>
+<p>Текст файла</p>
+<figure>
+<img data-src="image/9.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Текст файла</figcaption>
+</figure>
+<h2 id="section-9"></h2>
+<p>Создаю файл, открываю его в редакторе, компилирую, проверяю</p>
+<figure>
+<img data-src="image/10.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Подготовка файла</figcaption>
+</figure>
+<h2 id="section-10"></h2>
+<p>Продолжаю изменять права от имени суперпользователя</p>
+<figure>
+<img data-src="image/11.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Изменение прав</figcaption>
+</figure>
+<h2 id="section-11"></h2>
+<p>Пытаюсь от имени пользователя guest прочитать файл, не получается</p>
+<figure>
+<img data-src="image/12.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Попытка прочесть файл</figcaption>
+</figure>
+<h2 id="section-12"></h2>
+<p>Пытаюсь прочесть файл с помощью нашего файла, получаю отказ в доступе</p>
+<figure>
+<img data-src="image/13.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Попытка прочесть файл</figcaption>
+</figure>
+<h2 id="section-13"></h2>
+<p>Пытаюсь прочесть другой файл</p>
+<figure>
+<img data-src="image/14.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Попытка прочесть файл</figcaption>
+</figure>
+<h2 id="section-14"></h2>
+<p>Пробуем прочесть эти же файлы от имени суперпользователя и чтение файлов проходит успешно</p>
+<figure>
+<img data-src="image/15.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Чтение файлов</figcaption>
+</figure>
+<h2 id="section-15"></h2>
+<p>Проверяем папку tmp на наличие атрибута Sticky, т.к. в выводе есть буква t, то атрибут установлен</p>
+<figure>
+<img data-src="image/16.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Атрибут установлен</figcaption>
+</figure>
+<h2 id="section-16"></h2>
+<p>От имени пользователя guest создаю файл с текстом, добавляю права на чтение и запись для других пользователей</p>
+<figure>
+<img data-src="image/17.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Изменение прав</figcaption>
+</figure>
+<h2 id="section-17"></h2>
+<p>Вхожу в систему от имени пользователя guest2, от его имени могу прочитать файл file01.txt, но перезаписать информацию в нем не могу Также невозможно добавить в файл file01.txt новую информацию от имени пользователя guest2 Далее пробуем удалить файл, снова получаем отказ</p>
+<figure>
+<img data-src="image/18.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Эксперименты</figcaption>
+</figure>
+<h2 id="section-18"></h2>
+<p>От имени суперпользователя снимаем с директории атрибут Sticky</p>
+<figure>
+<img data-src="image/19.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Снятие атрибута</figcaption>
+</figure>
+<h2 id="section-19"></h2>
+<p>Проверяем, что атрибут действительно снят</p>
+<figure>
+<img data-src="image/20.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Проверка</figcaption>
+</figure>
+<h2 id="section-20"></h2>
+<p>Далее был выполнен повтор предыдущих действий. По результатам без Sticky-бита запись в файл и дозапись в файл осталась невозможной, зато удаление файла прошло успешно</p>
+<figure>
+<img data-src="image/21.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Эксперименты 2</figcaption>
+</figure>
+<h2 id="section-21"></h2>
+</section>
+<section id="выводы" class="slide level1">
+<h1>Выводы</h1>
+<p>Изучила механизм изменения идентификаторов, применила SetUID- и Sticky-биты. Получила практические навыки работы в кон- соли с дополнительными атрибутами. Рассмотрела работы механизма смены идентификатора процессов пользователей, а также влияние бита Sticky на запись и удаление файлов.</p>
+</section>
+<section id="список-литературы" class="slide level1 unnumbered">
+<h1 class="unnumbered">Список литературы</h1>
+<div id="refs" role="doc-bibliography">
+
+</div>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
