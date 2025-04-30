@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="АРбатова В. П.">
+  <title>Презентация по лабораторной работе №6</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reset.css">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Презентация по лабораторной работе №6</h1>
+  <p class="subtitle">Информационная безопасность</p>
+  <p class="author">АРбатова В. П.</p>
+  <p class="date">30 апреля 2025</p>
+</section>
+
+<section id="цель-работы" class="slide level1">
+<h1>Цель работы</h1>
+<p>Развить навыки администрирования ОС Linux. Получить первое практическое знакомство с технологией SELinux1. Проверить работу SELinx на практике совместно с веб-сервером Apache. <span class="citation" data-cites="course">[@course]</span></p>
+</section>
+<section id="теоретическое-введение" class="slide level1">
+<h1>Теоретическое введение</h1>
+<p>SELinux (Security-Enhanced Linux) обеспечивает усиление защиты путем внесения изменений как на уровне ядра, так и на уровне пространства пользователя, что превращает ее в действительно «непробиваемую» операционную систему. Впервые эта система появилась в четвертой версии CentOS, а в 5 и 6 версии реализация была существенно дополнена и улучшена. SELinux имеет три основных режим работы:</p>
+<p>Enforcing: режим по умолчанию. При выборе этого режима все действия, которые каким-то образом нарушают текущую политику безопасности, будут блокироваться, а попытка нарушения будет зафиксирована в журнале.</p>
+<p>Permissive: в случае использования этого режима, информация о всех действиях, которые нарушают текущую политику безопасности, будут зафиксированы в журнале, но сами действия не будут заблокированы.</p>
+<p>Disabled: полное отключение системы принудительного контроля доступа.</p>
+<p>Политика SELinux определяет доступ пользователей к ролям, доступ ролей к доменам и доступ доменов к типам. Контекст безопасности — все атрибуты SELinux — роли, типы и домены. Более подробно см. в <span class="citation" data-cites="f">[@f]</span>.</p>
+<p>Apache — это свободное программное обеспечение, с помощью которого можно создать веб-сервер. Данный продукт возник как доработанная версия другого HTTP-клиента от национального центра суперкомпьютерных приложений (NCSA). Для чего нужен Apache сервер:</p>
+<p>чтобы открывать динамические PHP-страницы,</p>
+<p>для распределения поступающей на сервер нагрузки,</p>
+<p>для обеспечения отказоустойчивости сервера,</p>
+<p>чтобы потренироваться в настройке сервера и запуске PHP-скриптов.</p>
+<p>Apache является кроссплатформенным ПО и поддерживает такие операционные системы, как Linux, BSD, MacOS, Microsoft, BeOS и другие.</p>
+<p>Более подробно см. в <span class="citation" data-cites="s">[@s]</span>.</p>
+</section>
+<section id="выполнение-лабораторной-работы" class="slide level1">
+<h1>Выполнение лабораторной работы</h1>
+<h2 id="section"></h2>
+<p>Перехожу в корневую директорию и устанавливаю httpd</p>
+<figure>
+<img data-src="image/1.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Установка</figcaption>
+</figure>
+<h2 id="section-1"></h2>
+<p>Перехожу в директорию /etc/httpd, чтобы настроить веб-сервер. Добавляю строку ServerName test.ru в файл httpd.conf, указывая имя сервера. Очищаю правила iptables, чтобы сбросить настройки фаервола. Устанавливаю политику ACCEPT для входящих подключений, разрешая входящий трафик. Устанавливаю политику ACCEPT для исходящих подключений, разрешая исходящий трафик.</p>
+<figure>
+<img data-src="image/2.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Выполняю настройки</figcaption>
+</figure>
+<h2 id="section-2"></h2>
+<p>Убедилась, что SELinux работает в режиме enforcing политики targeted с помощью команд getenforce и sestatus</p>
+<figure>
+<img data-src="image/3.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Убеждаюсь в работе</figcaption>
+</figure>
+<h2 id="section-3"></h2>
+<p>Запускаю сервер apache, далее обращаюсь с помощью браузера к веб-серверу, запущенному на компьютере, он работает, что видно из вывода команды service httpd status (рисунки 4-5)</p>
+<figure>
+<img data-src="image/4.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Запуск сервера</figcaption>
+</figure>
+<figure>
+<img data-src="image/5.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Статус работы</figcaption>
+</figure>
+<h2 id="section-4"></h2>
+<p>С помощью команды ps auxZ | grep httpd нашла веб-сервер Apache в списке процессов. Его контекст безопасности - httpd_t</p>
+<figure>
+<img data-src="image/6.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Ищу контекст безопасности</figcaption>
+</figure>
+<h2 id="section-5"></h2>
+<p>Просмотрела текущее состояние переключателей SELinux для Apache с помощью команды sestatus -bigrep httpd</p>
+<figure>
+<img data-src="image/7.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Просмотр текущего состояния</figcaption>
+</figure>
+<h2 id="section-6"></h2>
+<p>Просмотрела статистику по политике с помощью команды seinfo. Множество пользователей - 8, ролей - 39, типов - 5135</p>
+<figure>
+<img data-src="image/8.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Просмотр статистики по политике</figcaption>
+</figure>
+<h2 id="section-7"></h2>
+<p>Типы поддиректорий, находящихся в директории /var/www, с помощью команды ls -lZ /var/www следующие: владелец - root, права на изменения только у владельца. Файлов в директории нет</p>
+<figure>
+<img data-src="image/9.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Смотрю права</figcaption>
+</figure>
+<h2 id="section-8"></h2>
+<p>В директории /var/www/html нет файлов.</p>
+<figure>
+<img data-src="image/10.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Файлы директории</figcaption>
+</figure>
+<h2 id="section-9"></h2>
+<p>Создаю файл</p>
+<figure>
+<img data-src="image/11.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Создание файла</figcaption>
+</figure>
+<h2 id="section-10"></h2>
+<p>Создать файл может только суперпользователь, поэтому от его имени создаем файл touch.html cо следующим содержанием</p>
+<figure>
+<img data-src="image/12.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Заполняю файл</figcaption>
+</figure>
+<h2 id="section-11"></h2>
+<p>Перехожу на сайт и смотрю. Всё удачно</p>
+<figure>
+<img data-src="image/13.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Сайт</figcaption>
+</figure>
+<h2 id="section-12"></h2>
+<p>Изменяю контекст файла /var/www/html/test.html с httpd_sys_content_t на любой другой, к которому процесс httpd не должен иметь доступа, например, на samba_share_t: chcon -t samba_share_t /var/www/html/test.html ls -Z /var/www/html/test.html Контекст действительно поменялся</p>
+<figure>
+<img data-src="image/14.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Изменение контекста</figcaption>
+</figure>
+<h2 id="section-13"></h2>
+<p>Доступ запрещен</p>
+<figure>
+<img data-src="image/15.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Сайт</figcaption>
+</figure>
+<h2 id="section-14"></h2>
+<p>файл не был отображён, хотя права доступа позволяют читать этот файл любому пользователю, потому что установлен контекст, к которому процесс httpd не должен иметь доступа. Просматриваю log-файлы веб-сервера Apache и системный лог-файл: tail /var/log/messages. Если в системе окажутся запущенными процессы setroubleshootd и audtd, то вы также сможете увидеть ошибки, аналогичные указанным выше, в файле /var/log/audit/audit.log</p>
+<figure>
+<img data-src="image/16.jpg" id="fig:001" style="width:70.0%" alt="" /><figcaption>Проверка</figcaption>
+</figure>
+</section>
+<section id="выводы" class="slide level1">
+<h1>Выводы</h1>
+<p>В ходе выполнения данной лабораторной работы были развиты навыки администрирования ОС Linux, получено первое практическое знакомство с технологией SELinux и проверена работа SELinux на практике совместно с веб-сервером Apache.</p>
+</section>
+<section id="список-литературы" class="slide level1 unnumbered">
+<h1 class="unnumbered">Список литературы</h1>
+<div id="refs" role="doc-bibliography">
+
+</div>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
